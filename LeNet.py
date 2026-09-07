@@ -12,7 +12,8 @@ from scipy.interpolate import splev, splrep
 from sklearn.metrics import confusion_matrix, classification_report, roc_auc_score, roc_curve, auc
 import pandas as pd
 
-base_dir = r"D:\finalyearproject\Sleep-apnea-detection-through-a-modified-LeNet-5-convolutional-neural-network-master\dataset\apnea-ecg-database-1.0.0"
+PROJECT_DIR = os.path.dirname(os.path.abspath(__file__))
+base_dir = os.path.join(PROJECT_DIR, "dataset", "apnea-ecg-database-1.0.0")
 
 ir = 3  # interpolate interval
 before = 2
@@ -102,7 +103,7 @@ def plot(history):
     axes[1].legend(loc="best")
 
     fig.tight_layout()
-    fig.savefig("performance_curvesle.png")
+    fig.savefig(os.path.join(PROJECT_DIR, "performance_curvesle.png"))
     plt.show()
 
 if __name__ == "__main__":
@@ -119,15 +120,16 @@ if __name__ == "__main__":
     model.summary()
 
     # Save and visualize the model
-    model.save("modelnew.h5")
-    netron.start('modelnew.h5')
+    model_preview_path = os.path.join(PROJECT_DIR, "modelnew.h5")
+    model.save(model_preview_path)
+    netron.start(model_preview_path)
 
     model.compile(optimizer="adam", loss="categorical_crossentropy", metrics=['accuracy'])
 
     lr_scheduler = LearningRateScheduler(lr_schedule)
     history = model.fit(x_train, y_train, batch_size=32, epochs=20, validation_data=(x_test, y_test),
                         callbacks=[lr_scheduler])
-    model.save(os.path.join("models", "model.final.h5"))
+    model.save(os.path.join(PROJECT_DIR, "models", "model.final.h5"))
 
     # Evaluate model on test data
     loss, accuracy = model.evaluate(x_test, y_test)
@@ -168,7 +170,7 @@ if __name__ == "__main__":
     plt.show()
 
     # Save results
-    output_dir = "output"
+    output_dir = os.path.join(PROJECT_DIR, "output")
     os.makedirs(output_dir, exist_ok=True)
     output = pd.DataFrame({"y_true": y_test_binary, "y_score": y_pred_binary, "subject": groups_test})
     output.to_csv(os.path.join(output_dir, "LeNet.csv"), index=False)

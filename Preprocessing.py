@@ -13,7 +13,8 @@ from tqdm import tqdm
 
 # PhysioNet Apnea-ECG dataset
 # url: https://physionet.org/physiobank/database/apnea-ecg/
-base_dir = r"D:\finalyearproject\Sleep-apnea-detection-through-a-modified-LeNet-5-convolutional-neural-network-master\dataset\apnea-ecg-database-1.0.0"
+PROJECT_DIR = os.path.dirname(os.path.abspath(__file__))
+base_dir = os.path.join(PROJECT_DIR, "dataset", "apnea-ecg-database-1.0.0")
 
 fs = 100
 sample = fs * 60  # 1 min's sample points
@@ -87,7 +88,7 @@ if __name__ == "__main__":
     print()
 
     answers = {}
-    with open(os.path.join(r"D:\finalyearproject\Sleep-apnea-detection-through-a-modified-LeNet-5-convolutional-neural-network-master\dataset", "event-2-answers"), "r") as f:
+    with open(os.path.join(PROJECT_DIR, "dataset", "event-2-answers"), "r") as f:
         for answer in f.read().split("\n\n"):
             answers[answer[:3]] = list("".join(answer.split()[2::2]))
 

@@ -8,7 +8,8 @@ from tensorflow.keras.models import load_model
 from scipy.interpolate import splev, splrep
 from sklearn.metrics import confusion_matrix
 
-base_dir = r"D:\finalyearproject\Sleep-apnea-detection-through-a-modified-LeNet-5-convolutional-neural-network-master\dataset\apnea-ecg-database-1.0.0"
+PROJECT_DIR = os.path.dirname(os.path.abspath(__file__))
+base_dir = os.path.join(PROJECT_DIR, "dataset", "apnea-ecg-database-1.0.0")
 
 ir = 3
 before = 2
@@ -73,7 +74,7 @@ if __name__ == "__main__":
 
     model.fit(x_train, y_train, epochs=10, batch_size=32, validation_data=(x_test, y_test))
 
-    model.save(os.path.join(r"D:\finalyearproject\Sleep-apnea-detection-through-a-modified-LeNet-5-convolutional-neural-network-master\models", "custom_lenet5_model.h5"))
+    model.save(os.path.join(PROJECT_DIR, "models", "custom_lenet5_model.h5"))
 
     # Evaluate the model
     print("training:") 

@@ -6,8 +6,9 @@ from scipy.interpolate import splev, splrep
 import wfdb
 
 # Define paths
-model_path = r"D:\finalyearproject\Sleep-apnea-detection-through-a-modified-LeNet-5-convolutional-neural-network-master\models\custom_lenet5_model.h5"
-base_dir = r"D:\finalyearproject\Sleep-apnea-detection-through-a-modified-LeNet-5-convolutional-neural-network-master\dataset\apnea-ecg-database-1.0.0"
+PROJECT_DIR = os.path.dirname(os.path.abspath(__file__))
+model_path = os.path.join(PROJECT_DIR, "models", "custom_lenet5_model.h5")
+base_dir = os.path.join(PROJECT_DIR, "dataset", "apnea-ecg-database-1.0.0")
 
 fs = 100  # Sampling frequency
 segment_length = 900  # Length of each segment in samples

@@ -18,7 +18,8 @@ from tensorflow.keras.layers import (
 )
 from tensorflow.keras.callbacks import EarlyStopping, ModelCheckpoint
 
-base_dir = r"D:\finalyearproject\Sleep-apnea-detection-through-a-modified-LeNet-5-convolutional-neural-network-master\dataset\apnea-ecg-database-1.0.0"
+PROJECT_DIR = os.path.dirname(os.path.abspath(__file__))
+base_dir = os.path.join(PROJECT_DIR, "dataset", "apnea-ecg-database-1.0.0")
 
 scaler = lambda arr: (arr - np.min(arr)) / (np.max(arr) - np.min(arr))
 
@@ -125,7 +126,7 @@ def plot(history):
 
     fig.tight_layout()
 
-    fig.savefig("performance_curveshyb.png")
+    fig.savefig(os.path.join(PROJECT_DIR, "performance_curveshyb.png"))
     
     plt.show()
 
@@ -145,12 +146,13 @@ if __name__ == "__main__":
         metrics=['accuracy']
     )
 
-    model.save("modelhyb.h5")
-    netron.start('modelhyb.h5')
+    model_preview_path = os.path.join(PROJECT_DIR, "modelhyb.h5")
+    model.save(model_preview_path)
+    netron.start(model_preview_path)
     # Early stopping and model checkpoint
     early_stopping = EarlyStopping(monitor='val_accuracy', patience=5, restore_best_weights=True)
     # checkpoint = ModelCheckpoint("best_model.h5", monitor='val_accuracy', save_best_only=True)
-    checkpoint = ModelCheckpoint("best_model.keras", monitor='val_accuracy', save_best_only=True)
+    checkpoint = ModelCheckpoint(os.path.join(PROJECT_DIR, "best_model.keras"), monitor='val_accuracy', save_best_only=True)
 
     # Train the model
     history = model.fit(
@@ -163,7 +165,7 @@ if __name__ == "__main__":
     
     # Load the best model
     # model.load_weights("best_model.h5")
-    model.load_weights("best_model.keras")
+    model.load_weights(os.path.join(PROJECT_DIR, "best_model.keras"))
 
 
     # Evaluate the model

@@ -4,7 +4,7 @@
 # import pandas as pd
 
 # # Set base directory
-# base_dir = r"D:\finalyearproject\Sleep-apnea-detection-through-a-modified-LeNet-5-convolutional-neural-network-master\dataset\apnea-ecg-database-1.0.0"
+# base_dir = os.path.join(PROJECT_DIR, "dataset", "apnea-ecg-database-1.0.0")
 
 # # Load the dataset
 # with open(os.path.join(base_dir, "apnea-ecg.pkl"), 'rb') as f:
@@ -48,7 +48,8 @@ import os
 import pandas as pd
 
 # Set base directory
-base_dir = r"D:\finalyearproject\Sleep-apnea-detection-through-a-modified-LeNet-5-convolutional-neural-network-master\dataset\apnea-ecg-database-1.0.0"
+PROJECT_DIR = os.path.dirname(os.path.abspath(__file__))
+base_dir = os.path.join(PROJECT_DIR, "dataset", "apnea-ecg-database-1.0.0")
 
 # Load the apnea dataset
 def load_apnea_dataset():
@@ -102,7 +103,7 @@ if __name__ == "__main__":
     apnea_ecg = load_apnea_dataset()
 
     # Specify output CSV file path
-    output_csv_path = "preprocessed_apnea_data.csv"
+    output_csv_path = os.path.join(PROJECT_DIR, "preprocessed_apnea_data.csv")
 
     # Save the preprocessed data to CSV
     print("Saving preprocessed data to CSV...")

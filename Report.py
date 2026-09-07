@@ -9,7 +9,8 @@ from tensorflow.keras.layers import Input, Conv1D, GlobalAveragePooling1D, Dense
 from sklearn.metrics import confusion_matrix, classification_report, roc_curve, auc
 
 # Load Data from your dataset
-base_dir = r"D:\\finalyearproject\\Sleep-apnea-detection-through-a-modified-LeNet-5-convolutional-neural-network-master\\dataset\\apnea-ecg-database-1.0.0"
+PROJECT_DIR = os.path.dirname(os.path.abspath(__file__))
+base_dir = os.path.join(PROJECT_DIR, "dataset", "apnea-ecg-database-1.0.0")
 scaler = lambda arr: (arr - np.min(arr)) / (np.max(arr) - np.min(arr))
 ir, before, after = 3, 2, 2  # Sampling rate and windowing
 

@@ -1,10 +1,10 @@
+import os
 import pandas as pd
 
-# Define the file path
-import pandas as pd
 
 # Path to the CSV file
-input_csv = r"D:\finalyearproject\Sleep-apnea-detection-through-a-modified-LeNet-5-convolutional-neural-network-master\output\sleep_data.csv"
+PROJECT_DIR = os.path.dirname(os.path.abspath(__file__))
+input_csv = os.path.join(PROJECT_DIR, "output", "sleep_data.csv")
 
 # Read the CSV file using pandas
 df = pd.read_csv(input_csv)
@@ -30,7 +30,7 @@ print(f"Mean value for Length minutes: {mean_length_minutes}")
 # from sklearn.metrics import confusion_matrix, classification_report, roc_auc_score
 
 # # Base directory for the dataset
-# base_dir = r"D:\finalyearproject\Sleep-apnea-detection-through-a-modified-LeNet-5-convolutional-neural-network-master\dataset\apnea-ecg-database-1.0.0"
+# base_dir = os.path.join(PROJECT_DIR, "dataset", "apnea-ecg-database-1.0.0")
 
 # # Data scaling function
 # scaler = lambda arr: (arr - np.min(arr)) / (np.max(arr) - np.min(arr))
@@ -209,7 +209,7 @@ print(f"Mean value for Length minutes: {mean_length_minutes}")
 # from sklearn.metrics import confusion_matrix, classification_report, roc_auc_score
 
 # # Base directory for the dataset
-# base_dir = r"D:\finalyearproject\Sleep-apnea-detection-through-a-modified-LeNet-5-convolutional-neural-network-master\dataset\apnea-ecg-database-1.0.0"
+# base_dir = os.path.join(PROJECT_DIR, "dataset", "apnea-ecg-database-1.0.0")
 
 # # Data scaling function
 # scaler = lambda arr: (arr - np.min(arr)) / (np.max(arr) - np.min(arr))

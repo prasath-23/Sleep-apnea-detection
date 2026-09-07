@@ -17,7 +17,8 @@ app = Flask(__name__)
 CORS(app)
 
 # Path to the dataset
-base_dir = r"D:\\finalyearproject\\Sleep-apnea-detection-through-a-modified-LeNet-5-convolutional-neural-network-master\\dataset\\apnea-ecg-database-1.0.0"
+PROJECT_DIR = os.path.dirname(os.path.abspath(__file__))
+base_dir = os.path.join(PROJECT_DIR, "dataset", "apnea-ecg-database-1.0.0")
 
 # Global variables for metrics
 loss, accuracy = None, None

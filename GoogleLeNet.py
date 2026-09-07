@@ -10,6 +10,7 @@ from tensorflow.keras.models import Model
 from tensorflow.keras.optimizers import Adam
 from tensorflow.keras.utils import to_categorical
 from sklearn.metrics import roc_curve, auc, confusion_matrix, classification_report
+PROJECT_DIR = os.path.dirname(os.path.abspath(__file__))
 
 def scale_data(arr):
     return (arr - np.min(arr)) / (np.max(arr) - np.min(arr))
@@ -18,7 +19,7 @@ ir = 3  # interpolate interval
 before = 2
 after = 2
 
-base_dir = r"D:\\finalyearproject\\Sleep-apnea-detection-through-a-modified-LeNet-5-convolutional-neural-network-master\\dataset\\apnea-ecg-database-1.0.0"
+base_dir = os.path.join(PROJECT_DIR, "dataset", "apnea-ecg-database-1.0.0")
 
 def load_data():
     tm = np.arange(0, (before + 1 + after) * 60, step=1 / float(ir))
